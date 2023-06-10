@@ -39,51 +39,5 @@ var coverVid=function(a,b,c){function d(a,b){var c=null;return function(){var d=
 		$(this).css("background-color", color );
 	});
 
-
-	$(window).load(function(){
-
-		/* Filterable Items */
-		var $container = $('.filterable-items');
-		$container.isotope({
-			filter: '*',
-			layoutMode: 'fitRows',
-			animationOptions: {
-				duration: 750,
-				easing: 'linear',
-				queue: false
-			}
-		});
-		$('.filterable-nav a').click(function(e){
-			e.preventDefault();
-			$('.filterable-nav .current').removeClass('current');
-			$(this).addClass('current');
-
-			var selector = $(this).attr('data-filter');
-			$container.isotope({
-				filter: selector,
-				animationOptions: {
-					duration: 750,
-					easing: 'linear',
-					queue: false
-				}
-			 });
-			 return false;
-		});
-
-		$('.mobile-filter').change(function(){
-			var selector = $(this).val();
-			$container.isotope({
-				filter: selector,
-				animationOptions: {
-					duration: 750,
-					easing: 'linear',
-					queue: false
-				}
-			 });
-			 return false;
-		});
-
-	})
-
 }(jQuery);
 
