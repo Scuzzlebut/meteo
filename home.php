@@ -39,7 +39,7 @@
 			<div class="hero" data-bg-image="images/banner.png">
 				<div class="container">
 					<form action="#" class="find-location">
-						<input type="text" placeholder="Find your location...">
+						<input type="text" name="city" placeholder="Find your location...">
 						<input type="submit" value="Find">
 					</form>
 
