@@ -1,4 +1,4 @@
-FROM 4.4-fpm-alpine
+FROM php:7-apache
 
 # Copia i file del progetto Git nella directory del documento di root di Apache
 # possibilmente sostituire il token fornito con uno proprio
