@@ -95,16 +95,6 @@ export default {
             console.error(error);
           });
     }
-    /*filterOptions() {
-      if (this.selectedOption.length >= 3) {
-        this.filteredOptions = this.options.filter(option =>
-            option.toLowerCase().includes(this.selectedOption.toLowerCase())
-        );
-        this.showOptions = true;
-      } else {
-        this.showOptions = false;
-      }
-    },*/
   }
 }
 </script>

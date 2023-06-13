@@ -54,7 +54,8 @@ class Main
      */
     function searchCity($city)
     {
-        $response = $this->api_call(_BASE_GEOCODING_URL . "search?count=" . _MAX_API_CALLS . "&language=it&format=json&name=" . $city);
+        $normalized_city=str_replace(" ","+",$city);
+        $response = $this->api_call(_BASE_GEOCODING_URL . "search?count=" . _MAX_API_CALLS . "&language=it&format=json&name=" . $normalized_city);
 
         if ($response === false)
             return false;

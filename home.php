@@ -13,7 +13,11 @@
 
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="style.css">
-		
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
 		<script src="js/ie-support/respond.js"></script>
@@ -39,7 +43,7 @@
 			<div class="hero" data-bg-image="images/banner.png">
 				<div class="container">
 					<form action="#" class="find-location">
-						<input type="text" name="city" placeholder="Find your location...">
+						<input type="text" name="city" id="autocomplete" placeholder="Find your location...">
 						<input type="submit" value="Find">
 					</form>
 
@@ -85,10 +89,32 @@
 			</div>
 		</div>
 		
-		<script src="js/jquery-1.11.1.min.js"></script>
+<!--		<script src="js/jquery-1.11.1.min.js"></script>-->
 		<script src="js/plugins.js"></script>
 		<script src="js/app.js"></script>
-		
+        <script>
+            $(function() {
+                $("#autocomplete").autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            url: "https://geocoding-api.open-meteo.com/v1/search?count=10&language=it&format=json&name="+request.term,
+                            dataType: "json",
+                            data: {},
+                            success: function(data) {
+                                var suggestions = []
+                                if(data.results)
+                                    data.results.forEach(function(result) {
+                                        if(result.country_code === "IT" && !suggestions.includes(result.name))
+                                            suggestions.push(result.name)
+                                    });
+                                response(suggestions);
+                            }
+                        });
+                    },
+                    minLength: 3
+                });
+            });
+        </script>
 	</body>
 
 </html>
